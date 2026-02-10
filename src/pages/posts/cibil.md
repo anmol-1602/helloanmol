@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/PostLayout.astro
+layout: ../../layouts/postlayout.astro
 title: "Architecting the CIBIL Evaluation System"
 pubDate: "10 FEB 2026"
 category: "Engineering"
