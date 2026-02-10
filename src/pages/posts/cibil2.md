@@ -1,5 +1,6 @@
 ---
-layout: ../../layouts/PostLayout.astro
+layout: ../../layouts/postlayout2.astro
+const { frontmatter } = Astro.props;
 title: "Architecting the CIBIL Evaluation System"
 pubDate: "10 FEB 2026"
 category: "Engineering"
