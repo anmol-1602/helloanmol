@@ -1,0 +1,149 @@
+---
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HelloAnmol</title>
+  </head>
+  <body>
+    </body>
+</html>
+<div class="relative min-h-screen overflow-x-hidden bg-[#FDFCFB] font-sans text-[#334155] selection:bg-rose-100">
+  
+  <nav class="flex justify-between items-center p-8 max-w-6xl mx-auto">
+    <h1 class="text-xl font-bold tracking-tight text-slate-900">HelloAnmol<span class="text-rose-400">.</span></h1>
+    <div class="space-x-8 text-[14px] font-medium opacity-70">
+      <a href="/" class="hover:opacity-100 transition">Home</a>
+      <a href="#" class="hover:opacity-100 transition">Articles</a>
+      <a href="#" class="hover:opacity-100 transition">Projects</a>
+      <a href="#" class="hover:opacity-100 transition text-rose-500 font-bold underline underline-offset-8">About</a>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 md:px-10">
+    
+    <header class="pt-10 pb-16 animate-slide-up">
+      <div class="flex flex-col md:flex-row items-center gap-10">
+        <img src="https://via.placeholder.com/180" alt="Anmol" class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover shadow-lg border-4 border-white">
+        
+        <div>
+          <h2 class="font-serif text-5xl md:text-6xl tracking-tighter text-slate-900 mb-6 leading-[0.9]">
+            Nice to meet you<span class="italic text-rose-400">!</span>
+          </h2>
+          <p class="font-serif text-2xl leading-relaxed text-slate-700 max-w-2xl">
+            I'm a software engineer who believes that technical systems should be crafted with the same <span class="text-blue-400 italic underline decoration-blue-100 underline-offset-4">intentionality</span> as a piece of art.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="animate-slide-up space-y-20 pb-24" style="animation-delay: 0.2s;">
+      
+      <section class="prose prose-slate max-w-none">
+        <h3 class="text-3xl font-serif text-slate-900 mb-8 border-b border-slate-100 pb-4">My Story</h3>
+        <div class="space-y-6 text-lg font-light leading-relaxed text-slate-600">
+          <p>
+            My journey started with a curiosity for how things work, which naturally led me into the world of engineering. Over the years, I've developed a deep appreciation for the "how" behind the work—inspired by the transparency of builders who share their process.
+          </p>
+          <p>
+            When I'm not architecting systems in <strong>Java or TypeScript</strong>, I'm usually exploring the mountains near Sakleshpur, experimenting with 3D print designs, or trying to master the nuances of a new language. I believe that a well-lived life is a collection of intentional projects.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-serif text-slate-900 mb-8">Things I value</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-3xl border border-slate-50 bg-white">
+            <div class="text-2xl mb-4">🎯</div>
+            <h5 class="font-bold text-sm mb-2">Intentionality</h5>
+            <p class="text-xs text-slate-400">Doing things with purpose, not just for the sake of busy-ness.</p>
+          </div>
+          <div class="p-6 rounded-3xl border border-slate-50 bg-white">
+            <div class="text-2xl mb-4">📖</div>
+            <h5 class="font-bold text-sm mb-2">Lifelong Learning</h5>
+            <p class="text-xs text-slate-400">From Cal Newport's philosophies to new programming paradigms.</p>
+          </div>
+          <div class="p-6 rounded-3xl border border-slate-50 bg-white">
+            <div class="text-2xl mb-4">☕</div>
+            <h5 class="font-bold text-sm mb-2">Simplicity</h5>
+            <p class="text-xs text-slate-400">Reducing complexity in code, life, and everyday systems.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-serif text-slate-900 mb-8">Things I value</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-8 rounded-[2.5rem] border border-slate-100 bg-white hover:shadow-md transition-shadow">
+            <div class="text-3xl mb-4">🎯</div>
+            <h5 class="font-bold text-slate-900 mb-2">Intentionality</h5>
+            <p class="text-sm text-slate-500 leading-relaxed">Doing things with purpose, avoiding the "busy-ness" trap to focus on what matters.</p>
+          </div>
+          <div class="p-8 rounded-[2.5rem] border border-slate-100 bg-white hover:shadow-md transition-shadow">
+            <div class="text-3xl mb-4">📖</div>
+            <h5 class="font-bold text-slate-900 mb-2">Lifelong Learning</h5>
+            <p class="text-sm text-slate-500 leading-relaxed">From deep work philosophies to engineering paradigms, the quest for knowledge never ends.</p>
+          </div>
+          <div class="p-8 rounded-[2.5rem] border border-slate-100 bg-white hover:shadow-md transition-shadow">
+            <div class="text-3xl mb-4">☕</div>
+            <h5 class="font-bold text-slate-900 mb-2">Simplicity</h5>
+            <p class="text-sm text-slate-500 leading-relaxed">Reducing complexity in code, systems, and life to create space for clarity.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+         <h3 class="text-3xl font-serif text-slate-900 mb-2">Favorite Projects & Writing</h3>
+        <div class="h-px w-full bg-slate-100 mb-6"></div>
+        <p class="text-slate-500 mb-8 font-light">If you're new here, these are some of the things I'm most proud of:</p>
+        <ul class="space-y-4">
+          <li class="group flex items-center gap-4 text-lg">
+            <span class="w-1.5 h-1.5 bg-rose-400 rounded-full"></span>
+            <a href="#" class="text-[#3b82f6]  hover:underline font-serif transition-colors">The Big Project</a>
+            <span class="text-xs text-slate-300 italic">— A deep dive into building with intention.</span>
+          </li>
+          <li class="group flex items-center gap-4 text-lg">
+            <span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+            <a href="#" class=" font-serif text-[#3b82f6] group-hover:text-blue-500 transition-colors  decoration-slate-100 underline-offset-8 group-hover:decoration-blue-100">Why I switched to [Tool]</a>
+            <span class="text-xs text-slate-300 italic">— My thoughts on system efficiency.</span>
+          </li>
+          <li class="group flex items-center gap-4 text-lg">
+            <span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+            <a href="#" class="font-serif text-[#3b82f6] group-hover:text-amber-500 transition-colors  decoration-slate-100 underline-offset-8 group-hover:decoration-amber-100">My Setup</a>
+            <span class="text-xs text-slate-300 italic">— Hardware and software that power my focus.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="text-center pt-10 border-t border-slate-50">
+        <p class="font-serif text-2xl text-slate-800 mb-8">Want to chat about engineering, books, or art?</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="mailto:hello@example.com" class="px-8 py-4 bg-slate-900 text-white text-[12px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-rose-500 hover:-translate-y-1 transition-all shadow-lg shadow-slate-200">Email Me</a>
+          <a href="#" class="px-8 py-4 bg-white border border-slate-200 text-slate-900 text-[12px] font-bold uppercase tracking-[0.2em] rounded-full hover:border-rose-300 hover:text-rose-500 hover:-translate-y-1 transition-all shadow-sm">Twitter</a>
+          <a href="#" class="px-8 py-4 bg-white border border-slate-200 text-slate-900 text-[12px] font-bold uppercase tracking-[0.2em] rounded-full hover:border-blue-300 hover:text-blue-500 hover:-translate-y-1 transition-all shadow-sm">GitHub</a>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="py-20 text-center">
+      <div class="h-px w-12 bg-slate-100 mx-auto mb-6"></div>
+      <p class="opacity-40 text-xs tracking-wide italic">"Build with intention, or don't build at all."</p>
+      <p class="opacity-40 text-[10px] mt-2 uppercase tracking-tighter">© 2026 Anmol • Bengaluru</p>
+    </footer>
+
+  </main>
+</div>
+
+<style>
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>
