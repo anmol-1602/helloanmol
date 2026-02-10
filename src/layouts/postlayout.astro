@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{frontmatter.title} | HelloAnmol</title>
+  </head>
+  <body class="bg-[#FDFCFB] font-sans text-[#334155] selection:bg-rose-100">
+    
+    <nav class="flex justify-between items-center p-8 max-w-6xl mx-auto">
+      <h1 class="text-xl font-bold tracking-tight text-slate-900">
+        <a href="/">HelloAnmol<span class="text-rose-400">.</span></a>
+      </h1>
+      <div class="space-x-8 text-[14px] font-medium opacity-70">
+        <a href="/articles" class="hover:opacity-100 transition">Articles</a>
+        <a href="/projects" class="hover:opacity-100 transition">Projects</a>
+        <a href="/about" class="hover:opacity-100 transition">About</a>
+      </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 pt-16 pb-24">
+      <article class="animate-slide-up">
+        <header class="mb-12">
+          <div class="flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
+            <time datetime={frontmatter.pubDate}>{frontmatter.pubDate}</time>
+            <span>/</span>
+            <span class="text-rose-400">{frontmatter.category}</span>
+          </div>
+          <h1 class="font-serif text-4xl md:text-5xl tracking-tighter text-slate-900 mb-6 leading-[1.1]">
+            {frontmatter.title}
+          </h1>
+          <p class="text-xl font-serif italic text-slate-500 leading-relaxed">
+            {frontmatter.description}
+          </p>
+        </header>
+
+        <div class="prose prose-slate prose-lg max-w-none 
+          prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-slate-900
+          prose-a:text-[#3b82f6] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-slate-900 prose-blockquote:italic prose-blockquote:border-rose-200">
+          <slot /> 
+        </div>
+
+        <footer class="mt-24 pt-12 border-t border-slate-100">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-8 bg-white p-10 rounded-[3rem] border border-slate-50 shadow-sm">
+            <div class="max-w-md text-center md:text-left">
+              <h4 class="font-serif text-xl text-slate-900 mb-2">Thoughts or questions?</h4>
+              <p class="text-sm text-slate-500 font-light">
+                I'd love to hear your perspective on this. You can reach out via email or find me on Twitter.
+              </p>
+            </div>
+            <a href="mailto:hello@example.com" class="px-6 py-3 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-rose-500 transition-all">
+              Reply via Email
+            </a>
+          </div>
+        </footer>
+      </article>
+    </main>
+
+    <footer class="py-20 text-center opacity-40 text-[10px] uppercase tracking-tighter">
+      © 2026 Anmol • Built with intention
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

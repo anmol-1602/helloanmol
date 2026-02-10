@@ -1,0 +1,12 @@
+---
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HelloAnmol</title>
+  </head>
+  <body>
+    </body>
+</html>
