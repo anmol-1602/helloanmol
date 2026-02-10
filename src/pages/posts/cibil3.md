@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/postlayout3.astro
-title: "Architecting the CIBIL Evaluation System"
+title: "Architecting the CIBIL Evaluation Systemmm"
 pubDate: "10 FEB 2026"
 category: "Engineering"
 description: "Developing robust backend features in Java and TypeScript to evaluate credit scores for personal loans."
