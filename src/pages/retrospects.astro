@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+
+// Assuming your folder is src/content/retros/
+const retros = await getCollection('retrospectives');
+
+// Sort by date (Newest first)
+const sortedRetros = retros.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatMonth = (date: Date) => {
+  return date.toLocaleString('default', { month: 'long' });
+};
+---
+
+<div class="min-h-screen bg-[#FDFCFB] font-sans text-slate-800 antialiased selection:bg-rose-100/80">
+  
+  <nav class="mx-auto flex max-w-4xl items-center justify-between px-6 py-10">
+    <div class="group flex items-center gap-2 cursor-pointer">
+      <div class="h-1.5 w-1.5 rounded-full bg-rose-500 group-hover:animate-ping"></div>
+      <h1 class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-900">H.Anmol</h1>
+    </div>
+    <div class="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+      <a href="/blogs" class="transition-all hover:text-slate-900">Writing</a>
+      <a href="/retros" class="relative text-slate-900 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-4 after:bg-rose-500">Retros</a>
+    </div>
+  </nav>
+
+  <main class="mx-auto max-w-4xl px-6 pb-24">
+    <header class="relative mb-20 pt-12">
+      <div class="absolute -left-6 -top-4 text-[100px] font-serif italic text-slate-100/60 select-none leading-none pointer-events-none uppercase">Logs</div>
+      <h1 class="relative font-serif text-5xl italic tracking-tighter text-slate-900 md:text-6xl">
+        Monthly Retros<span class="text-rose-500">.</span>
+      </h1>
+      <p class="mt-4 font-serif text-base italic text-slate-400 max-w-sm">
+        Monthly check-ins on goals, habits, and the messy process of building a life.
+      </p>
+    </header>
+
+    <div class="relative space-y-2 border-l border-slate-100 ml-4 md:ml-0 md:border-none">
+      {sortedRetros.map((retro) => (
+        <article class="group relative rounded-3xl border border-transparent p-6 md:p-8 transition-all duration-500 hover:border-slate-100 hover:bg-white hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.04)]">
+          <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-14">
+            
+            <div class="flex shrink-0 flex-row items-baseline gap-3 md:w-24 md:flex-col md:gap-0.5 relative">
+              <div class="absolute -left-[33px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-slate-200 group-hover:bg-rose-400 transition-colors md:hidden"></div>
+              
+              <span class="font-mono text-sm font-black tracking-tighter text-slate-900">
+                {formatMonth(retro.data.pubDate)}
+              </span>
+              <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-slate-300">
+                {retro.data.pubDate.getFullYear()}
+              </span>
+            </div>
+            
+            <div class="flex-grow">
+              <h2 class="font-serif text-2xl md:text-3xl text-slate-900 transition-all duration-300 group-hover:text-rose-500 leading-tight tracking-tight">
+                <a href={`/retros/${retro.slug}`}>
+                  {retro.data.title}
+                </a>
+              </h2>
+              
+              <p class="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-slate-500 opacity-90">
+                {retro.data.summary}
+              </p>
+              
+              <div class="mt-6 flex items-center justify-between">
+                 <div class="flex items-center gap-3">
+                    <span class="rounded-full bg-slate-50 px-3 py-1 text-[9px] font-black uppercase tracking-widest text-slate-400 group-hover:bg-rose-50 group-hover:text-rose-500 transition-colors">
+                      {retro.data.mood || 'Neutral'}
+                    </span>
+                    <span class="text-[9px] font-mono text-slate-200 group-hover:text-slate-400">
+                       // {retro.data.focusArea}
+                    </span>
+                 </div>
+                 <a href={`/retros/${retro.slug}`} class="text-[10px] font-bold italic text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-slate-900">
+                    Read Log —>
+                 </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+</div>

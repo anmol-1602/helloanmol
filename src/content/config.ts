@@ -20,8 +20,21 @@ const blogs = defineCollection({
   }),
 });
 
+// 2. Define the Retrospectives Collection
+const retrospectives = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(), // We used 'summary' instead of 'description' for retros
+    pubDate: z.date(),
+    mood: z.string().optional(), // Optional so it doesn't break if you forget it
+    focusArea: z.string().optional(),
+  }),
+});
+
 // The key 'booknotes' MUST match your folder name exactly
 export const collections = {
- 'blogs': blogs,
+'retrospectives': retrospectives,
+'blogs': blogs,
  'booknotes': booknotesCollection,
 };
