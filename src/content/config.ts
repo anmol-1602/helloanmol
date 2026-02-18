@@ -11,7 +11,17 @@ const booknotesCollection = defineCollection({
   }),
 });
 
+const blogs = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    category: z.string(),
+  }),
+});
+
 // The key 'booknotes' MUST match your folder name exactly
 export const collections = {
-  'booknotes': booknotesCollection,
+ 'blogs': blogs,
+ 'booknotes': booknotesCollection,
 };
