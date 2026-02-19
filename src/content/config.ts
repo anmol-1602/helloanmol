@@ -1,5 +1,18 @@
 import { defineCollection, z } from 'astro:content';
 
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    category: z.string(),
+    refId: z.string(), // The unique "Lab ID" (e.g., "882" or "A-1")
+    stack: z.array(z.string()), // ['rust', 'wasm']
+    link: z.string().url(),
+  }),
+});
+
 const booknotesCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -34,6 +47,7 @@ const retrospectives = defineCollection({
 
 // The key 'booknotes' MUST match your folder name exactly
 export const collections = {
+'projects': projects,
 'retrospectives': retrospectives,
 'blogs': blogs,
  'booknotes': booknotesCollection,
