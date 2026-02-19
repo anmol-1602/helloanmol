@@ -1,28 +1,18 @@
 ---
-import '../styles/global.css';
+import Navbar from '../layouts/navbar.astro';
 import { getCollection } from 'astro:content';
 
 const books = await getCollection('booknotes');
 const sortedBooks = books.sort((a, b) => b.data.finished.localeCompare(a.data.finished));
 ---
 
-<div class="flex min-h-screen flex-col bg-[#F9F7F4] font-sans text-slate-600 antialiased selection:bg-rose-100">
-  
-  <nav class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-8 md:px-10 md:py-16">
-    <div class="flex items-center gap-2">
-      <div class="h-2 w-2 rounded-full bg-rose-400"></div>
-      <h1 class="text-xl font-bold tracking-tighter text-slate-900 italic">H.A<span class="text-rose-400">.</span></h1>
-    </div>
-    <div class="flex space-x-4 md:space-x-10 text-[9px] md:text-[11px] font-black tracking-[0.2em] text-slate-400 uppercase">
-      <a href="/articles" class="transition-colors hover:text-slate-900">Articles</a>
-      <a href="/projects" class="transition-colors hover:text-slate-900">Projects</a>
-      <a href="/library" class="border-b-2 border-rose-400 pb-1 text-slate-900">Library</a>
-    </div>
-  </nav>
-
-  <main class="mx-auto w-full max-w-6xl flex-grow px-6 pb-32 md:px-10">
-    <header class="mb-12 md:mb-24">
-      <h1 class="mb-6 md:mb-8 font-serif text-4xl sm:text-5xl md:text-7xl tracking-tight text-slate-900 italic">Ink & Insights<span class="text-rose-400">.</span></h1>
+<Navbar title="Library | Ink & Insights">
+  <div class="animate-layout-entry">
+    
+    <header class="mb-12 md:mb-24 pt-8">
+      <h1 class="mb-6 md:mb-8 font-serif text-4xl sm:text-5xl md:text-7xl tracking-tight text-slate-900 italic">
+        Ink & Insights<span class="text-rose-400">.</span>
+      </h1>
       <p class="mb-8 md:mb-12 max-w-2xl font-serif text-base md:text-xl leading-relaxed text-slate-400 italic">
         Condensed thoughts and takeaways from my bookshelf.
       </p>
@@ -51,8 +41,9 @@ const sortedBooks = books.sort((a, b) => b.data.finished.localeCompare(a.data.fi
 
           <div class="flex flex-grow flex-col text-center px-2">
             <h2 class="mb-4 line-clamp-2 font-serif text-xl md:text-[22px] leading-tight font-black text-slate-900">
-              {book.data.title} by {book.data.author}
+              {book.data.title}
             </h2>
+            <p class="mb-4 text-xs font-medium text-slate-400">by {book.data.author}</p>
 
             <div class="mt-auto">
               <div class="mb-6 flex items-center justify-between border-t border-slate-100 pt-6">
@@ -74,18 +65,15 @@ const sortedBooks = books.sort((a, b) => b.data.finished.localeCompare(a.data.fi
         </div>
       ))}
     </section>
-  </main>
 
-  <footer class="mx-auto mt-20 w-full max-w-6xl border-t border-slate-200/60 px-6 py-16 md:py-24 text-center md:px-10">
-    <div class="mx-auto max-w-md">
-      <h2 class="mb-4 md:mb-6 font-serif text-3xl md:text-4xl tracking-tight text-slate-900 italic">Thoughts?</h2>
-      <p class="mb-8 md:mb-12 text-[12px] md:text-[13px] leading-relaxed font-medium text-slate-400">
-        Feel free to ping me if any of these notes sparked an idea.
-      </p>
-      <div class="flex flex-col items-center gap-2 mt-8">
-        <div class="h-1 w-1 rounded-full bg-rose-400"></div>
-        <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-slate-200">Bengaluru • 2026</p>
+    <section class="mt-20 border-t border-slate-200/60 py-16 text-center">
+      <div class="mx-auto max-w-md">
+        <h2 class="mb-4 font-serif text-3xl italic tracking-tight text-slate-900">Thoughts?</h2>
+        <p class="text-[12px] font-medium leading-relaxed text-slate-400">
+          Feel free to ping me if any of these notes sparked an idea.
+        </p>
       </div>
-    </div>
-  </footer>
-</div>
+    </section>
+
+  </div>
+</Navbar>

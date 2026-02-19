@@ -1,26 +1,15 @@
 ---
-import '../styles/global.css';
+import Navbar from '../layouts/navbar.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
 const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<div class="min-h-screen bg-[#FDFCFB] font-sans text-slate-800 antialiased selection:bg-emerald-100">
-  
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 border-b border-slate-100">
-    <div class="group flex items-center gap-2 cursor-pointer">
-      <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-      <h1 class="text-[10px] font-black uppercase tracking-[0.4em]">H.Anmol</h1>
-    </div>
-    <div class="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-      <a href="/blogs" class="hover:text-slate-900 transition-colors">Writing</a>
-      <a href="/projects" class="text-slate-900 border-b border-emerald-500 pb-1">Builds</a>
-    </div>
-  </nav>
-
-  <main class="mx-auto max-w-6xl px-6 py-10">
-    <header class="mb-12 flex items-baseline justify-between border-b border-slate-100 pb-8">
+<Navbar title="Projects | HelloAnmol Builds">
+  <div class="animate-layout-entry">
+    
+    <header class="mb-12 flex items-baseline justify-between border-b border-slate-100 pb-8 pt-6">
       <div>
         <h1 class="font-serif text-4xl italic tracking-tighter text-slate-900">
           The Builds<span class="text-emerald-500">.</span>
@@ -34,8 +23,8 @@ const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data
 
     <div class="divide-y divide-slate-100">
       {sortedProjects.map((project, index) => (
-        <article class="group relative py-6 transition-all duration-300 hover:bg-emerald-50/30">
-          <div class="grid grid-cols-12 items-center gap-4 px-2">
+        <article class="group relative py-6 transition-all duration-300 hover:bg-emerald-50/30 rounded-xl px-2">
+          <div class="grid grid-cols-12 items-center gap-4">
             
             <div class="col-span-3 md:col-span-2 flex flex-col gap-1">
               <span class="font-mono text-[10px] font-black text-slate-900">
@@ -62,7 +51,7 @@ const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data
                   ))}
                </div>
                
-               <a href={project.data.link} target="_blank" class="flex h-8 w-24 items-center justify-between border border-slate-100 bg-white px-2 group-hover:border-emerald-500 transition-colors">
+               <a href={project.data.link} target="_blank" class="flex h-8 w-24 items-center justify-between border border-slate-100 bg-white px-2 group-hover:border-emerald-500 transition-colors shadow-sm">
                   <span class="text-[8px] font-black uppercase text-slate-400 group-hover:text-emerald-500">
                     Ref:{project.data.refId}
                   </span>
@@ -73,12 +62,13 @@ const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data
         </article>
       ))}
     </div>
-  </main>
 
-  <footer class="fixed bottom-6 left-6 hidden xl:block">
-     <div class="flex items-center gap-3 bg-white/80 px-4 py-2 backdrop-blur-sm border border-slate-100 rounded-full">
-        <div class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400">Terminal Active: Bangalore</span>
-     </div>
-  </footer>
-</div>
+    <div class="fixed bottom-6 left-6 hidden xl:block z-50">
+       <div class="flex items-center gap-3 bg-white/80 px-4 py-2 backdrop-blur-sm border border-slate-100 rounded-full shadow-sm">
+          <div class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400">Terminal Active: Bangalore</span>
+       </div>
+    </div>
+    
+  </div>
+</Navbar>
