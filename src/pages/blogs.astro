@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import Navbar from '../layouts/Navbar.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blogs');
@@ -12,22 +12,13 @@ const formatDate = (date: Date) => {
 };
 ---
 
-<div class="min-h-screen bg-[#FDFCFB] font-sans text-slate-800 antialiased selection:bg-rose-100/80">
-  
-  <nav class="mx-auto flex max-w-4xl items-center justify-between px-6 py-10">
-    <div class="group flex items-center gap-2 cursor-pointer">
-      <div class="h-1.5 w-1.5 rounded-full bg-rose-500 group-hover:animate-ping"></div>
-      <h1 class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-900">H.Anmol</h1>
-    </div>
-    <div class="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-      <a href="/blogs" class="relative text-slate-900 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-4 after:bg-rose-500">Writing</a>
-      <a href="/library" class="transition-all hover:text-slate-900">Library</a>
-    </div>
-  </nav>
-
-  <main class="mx-auto max-w-4xl px-6 pb-24">
-    <header class="relative mb-20 pt-12">
-      <div class="absolute -left-6 -top-4 text-[100px] font-serif italic text-slate-100/60 select-none leading-none pointer-events-none">Index</div>
+<Navbar title="Writing | HelloAnmol Archive">
+  <div class="animate-layout-entry">
+    
+    <header class="relative mb-16 pt-12 md:mb-20">
+      <div class="absolute -left-6 -top-4 text-[80px] md:text-[100px] font-serif italic text-slate-100/60 select-none leading-none pointer-events-none">
+        Index
+      </div>
       <h1 class="relative font-serif text-5xl italic tracking-tighter text-slate-900 md:text-6xl">
         The Archive<span class="text-rose-500">.</span>
       </h1>
@@ -37,7 +28,7 @@ const formatDate = (date: Date) => {
     </header>
 
     <div class="space-y-4">
-      {sortedPosts.map((post, index) => (
+      {sortedPosts.map((post) => (
         <article class="group relative rounded-3xl border border-transparent p-6 md:p-8 transition-all duration-500 hover:border-slate-100 hover:bg-white hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.04)]">
           <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-14">
             
@@ -76,9 +67,5 @@ const formatDate = (date: Date) => {
         </article>
       ))}
     </div>
-  </main>
-
-  <footer class="mt-20 py-20 text-center opacity-30">
-    <p class="font-mono text-[9px] uppercase tracking-[0.6em] text-slate-400">Bengaluru • 2026</p>
-  </footer>
-</div>
+  </div>
+</Navbar>

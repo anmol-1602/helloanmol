@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "HelloAnmol" } = Astro.props;
+const { pathname } = Astro.url;
+
+/** * Helper to determine active link styles.
+ * It checks if the current URL starts with the link path.
+ */
+const getLinkClass = (path: string) => {
+  const activeBase = "transition-all duration-300 ";
+  const isActive = pathname === path || (path !== '/' && pathname.startsWith(path));
+  
+  return isActive 
+    ? `${activeBase} text-rose-500 font-bold opacity-100` 
+    : `${activeBase} hover:opacity-100 opacity-70`;
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+</head>
+<body class="bg-[#FDFCFB] font-sans text-[#334155] selection:bg-rose-100 overflow-x-hidden">
+    
+    <div class="relative min-h-screen">
+      
+      <nav class="flex flex-col sm:flex-row justify-between items-center p-6 md:p-8 max-w-6xl mx-auto gap-6">
+        <a href="/" class="group">
+          <h1 class="text-xl font-bold tracking-tight text-slate-900">
+            HelloAnmol<span class="text-rose-400 group-hover:text-rose-600 transition-colors">.</span>
+          </h1>
+        </a>
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-8 text-[14px] font-medium">
+          <a href="/blogs" class={getLinkClass('/blogs')}>Blogs</a>
+          <a href="/booknotes" class={getLinkClass('/booknotes')}>Book Notes</a>
+          <a href="/projects" class={getLinkClass('/projects')}>Projects</a>
+          <a href="/retrospectives" class={getLinkClass('/retrospectives')}>Retrospectives</a>
+          <a href="/about" class={getLinkClass('/about')}>About</a>
+        </div>
+      </nav>
+
+      <main class="max-w-6xl mx-auto px-4 sm:px-6 md:px-10">
+        <slot /> 
+      </main>
+
+      <footer class="py-12 md:py-20 text-center">
+        <div class="text-[10px] font-black tracking-[0.4em] md:tracking-[0.6em] uppercase opacity-20 mb-6 italic">
+          Build &bull; Learn &bull; Repeat
+        </div>
+        <div class="h-px w-12 bg-slate-100 mx-auto mb-6"></div>
+        <p class="opacity-40 text-[10px] md:text-xs tracking-wide leading-relaxed px-4">
+          © 2026 Built with intention from Bengaluru.
+        </p>
+      </footer>
+    </div>
+
+    <style is:global>
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-layout-entry {
+        animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+    </style>
+</body>
+</html>
