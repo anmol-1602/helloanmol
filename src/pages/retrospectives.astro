@@ -1,72 +1,82 @@
 ---
-import Navbar from '../layouts/navbar.astro';
-import { getCollection } from 'astro:content';
+import Navbar from "../layouts/navbar.astro";
+import { getCollection } from "astro:content";
 
-const retros = await getCollection('retrospectives');
-const sortedRetros = retros.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const retros = await getCollection("retrospectives");
+const sortedRetros = retros.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
 const formatMonth = (date: Date) => {
-  return date.toLocaleString('default', { month: 'long' });
+  return date.toLocaleString("default", { month: "long" });
 };
 ---
 
-<Navbar title="Retrospectives | HelloAnmol Logs">
-  <div class="animate-layout-entry">
-    
-    <header class="relative mb-20 pt-12">
-      <h1 class="relative font-serif text-5xl italic tracking-tighter text-slate-900 md:text-6xl">
-        Monthly Retros<span class="text-rose-500">.</span>
-      </h1>
-      <p class="mt-4 font-serif text-lg italic text-slate-400 max-w-sm leading-relaxed">
+<Navbar title="Retrospects | HelloAnmol Logs">
+  <div class="animate-layout-entry mx-auto px-4 pb-32">
+         <header class="pt-16 pb-20 md:pt-24 md:pb-8 border-b border-slate-100/50 mb-20">
+      <h1 class="font-serif text-6xl md:text-6xl text-slate-900 tracking-tighter leading-[0.85] mb-8">
+          Retro<span class="italic text-slate-300">spects.</span>
+        </h1>
+      <p class="mt-4 font-serif text-xl italic text-slate-400 max-w-28rem leading-relaxed">
         Monthly check-ins on goals, habits, and the messy process of building a life.
       </p>
     </header>
 
-    <div class="relative space-y-6 border-l border-slate-100 ml-4 md:ml-0 md:border-none">
-      {sortedRetros.map((retro) => (
-        <article class="group relative rounded-3xl border border-transparent p-4 md:p-8 transition-all duration-500 hover:border-slate-100 hover:bg-white hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.04)]">
-          <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-14">
+    <!-- Simplified Timeline -->
+    <div class="relative">
+      <!-- Continuous Vertical Line -->
+      <div class="absolute left-6 md:left-[108px] top-4 bottom-0 w-px bg-slate-100"></div>
+
+      <div class="space-y-12 md:space-y-15">
+        {sortedRetros.map((retro) => (
+          <article class="group relative flex flex-col md:flex-row md:items-start gap-6 md:gap-14">
             
-            <div class="flex shrink-0 flex-row items-baseline gap-3 md:w-28 md:flex-col md:gap-0.5 relative">
-              <div class="absolute -left-[31px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-slate-200 group-hover:bg-rose-400 transition-colors md:hidden"></div>
-              
-              <span class="font-mono text-base md:text-lg font-black tracking-tighter text-slate-900 uppercase">
+            <!-- Timeline Dot -->
+            <div class="absolute left-[21.5px] md:left-[105.5px] top-3 h-1.5 w-1.5 rounded-full border border-white bg-slate-200 group-hover:bg-purple-500 transition-colors z-10 ring-4 ring-[#FDFCFB]"></div>
+            
+            <!-- Date Column -->
+            <div class="shrink-0 md:w-20 text-left md:text-right pt-1">
+              <h3 class="font-serif text-xl md:text-2xl text-slate-900 group-hover:text-purple-600 transition-colors">
                 {formatMonth(retro.data.pubDate)}
-              </span>
-              <span class="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-slate-300">
+              </h3>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-slate-300">
                 {retro.data.pubDate.getFullYear()}
               </span>
             </div>
             
-            <div class="flex-grow">
-              <h2 class="font-serif text-2xl md:text-4xl text-slate-900 transition-all duration-300 group-hover:text-rose-500 leading-tight tracking-tight">
-                <a href={`/retrospectives/${retro.slug}`}>
+            <!-- Content Card -->
+            <div class="grow  bg-white border border-transparent group-hover:border-slate-100 rounded-[2.5rem] p-6 md:p-10 md:pt-4 md:pb-4 md:-mt-8 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.04)]">
+              
+              <h2 class="font-serif text-2xl md:text-3xl text-slate-900 leading-[1.1] mb-6 tracking-tight group-hover:text-purple-800 transition-colors">
+                <a href={`/retrospectives/${retro.slug}`} class="before:absolute before:inset-0">
                   {retro.data.title}
                 </a>
               </h2>
               
-              <p class="mt-4 max-w-2xl text-lg md:text-xl leading-relaxed text-slate-500/90">
+              <p class="text-base md:text-lg leading-relaxed text-slate-500 opacity-90 mb-5 line-clamp-3">
                 {retro.data.summary}
               </p>
               
               <div class="mt-8 flex items-center justify-between">
-                 <div class="flex items-center gap-4">
-                    <span class="rounded-full bg-slate-50 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:bg-rose-50 group-hover:text-rose-500 transition-colors">
-                      {retro.data.mood || 'Neutral'}
-                    </span>
-                    <span class="hidden sm:inline text-[10px] font-mono text-slate-200 group-hover:text-slate-400">
-                       // {retro.data.focusArea}
-                    </span>
+                <div class="flex flex-wrap items-center gap-4 mb-3">
+                <span class="px-3 py-1 rounded-full bg-slate-50 text-[9px] font-black uppercase tracking-widest text-slate-500 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
+                  Mood: {retro.data.mood || 'Neutral'}
+                </span>
+                <span class="text-slate-200 text-xs">—</span>
+                <span class="text-[10px] font-medium tracking-wide text-slate-400">
+                  Focus: {retro.data.focusArea}
+                </span>
                  </div>
-                 <a href={`/retrospectives/${retro.slug}`} class="text-[11px] font-bold italic text-slate-400 transition-all group-hover:translate-x-1 group-hover:text-slate-900">
+                <a href={`/retrospectives/${retro.slug}`} class="text-[11px] font-bold italic text-slate-400 transition-all group-hover:translate-x-1 group-hover:text-slate-900">
                     Read Log —>
                  </a>
               </div>
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
     </div>
-
+    
   </div>
 </Navbar>
