@@ -21,6 +21,7 @@ const booknotesCollection = defineCollection({
     author: z.string(),
     rating: z.string(),
     finished: z.string(),
+    pubDate: z.date(),
     image: z.string(),
   }),
 });
