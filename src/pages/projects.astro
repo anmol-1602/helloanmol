@@ -3,7 +3,22 @@ import Navbar from '../layouts/navbar.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const sortedProjects = projects.sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf());
+// Formats month as numeric, e.g., '02'
+const formatMonthNumber = (date: Date) => {
+  return (date.getMonth() + 1).toString().padStart(2, '0');
+};
+
+const formatMonthName = (date: Date) => {
+  return date.toLocaleString("default", { month: "short" }).toUpperCase();
+};
+
+const formatDisplayDate = (dateOrString: Date | string) => {
+  if (typeof dateOrString === 'string') {
+    return dateOrString.toUpperCase();
+  }
+  return `${formatMonthName(dateOrString)} ${dateOrString.getFullYear()}`;
+};
 ---
 
 <Navbar title="Projects | HelloAnmol Builds">
@@ -12,7 +27,7 @@ const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data
     <header class="mb-12 flex items-baseline justify-between border-b border-slate-100 pb-8 pt-6">
       <div>
         <h1 class="font-serif text-4xl italic tracking-tighter text-slate-900">
-          The Builds<span class="text-emerald-500">.</span>
+          The Builds<span class="text-blue-500">.</span>
         </h1>
         <p class="mt-2 font-serif text-sm italic text-slate-400">Selected engineering experiments.</p>
       </div>
@@ -23,15 +38,16 @@ const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data
 
     <div class="divide-y divide-slate-100">
       {sortedProjects.map((project, index) => (
-        <article class="group relative py-6 transition-all duration-300 hover:bg-emerald-50/30 rounded-xl px-2">
+        <article class="group relative py-6 transition-all duration-300 hover:bg-blue-50/30 rounded-xl px-2">
           <div class="grid grid-cols-12 items-center gap-4">
             
+            <!-- Metadata Column: Technical / Machine-Readable -->
             <div class="col-span-3 md:col-span-2 flex flex-col gap-1">
-              <span class="font-mono text-[10px] font-black text-slate-900">
-                {(index + 1).toString().padStart(2, '0')}. {project.data.pubDate.getFullYear()}
+              <span class="font-mono text-[11px] text-slate-600 leading-none">
+                {formatDisplayDate(project.data.startDate)} -
               </span>
-              <span class="text-[9px] font-bold uppercase tracking-widest text-slate-300 group-hover:text-emerald-500">
-                {project.data.category}
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-blue-500 transition-colors">
+                {formatDisplayDate(project.data.endDate)} 
               </span>
             </div>
 
@@ -44,30 +60,24 @@ const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data
               </p>
             </div>
 
+            <!-- Telemetry Column: Tech Stack & Rigid Button -->
             <div class="hidden md:col-span-4 md:flex items-center justify-end gap-6 text-right">
-               <div class="flex gap-2">
-                  {project.data.stack.slice(0, 2).map(tech => (
-                    <span class="text-[9px] font-mono text-slate-300 uppercase">#{tech}</span>
+               <div class="flex gap-2 text-left">
+                  {project.data.stack.slice(0, 3).map(tech => (
+                    <span class="text-[9px] font-mono text-slate-400 uppercase group-hover:text-blue-600 transition-colors">#{tech}</span>
                   ))}
                </div>
                
-               <a href={project.data.link} target="_blank" class="flex h-8 w-24 items-center justify-between border border-slate-100 bg-white px-2 group-hover:border-emerald-500 transition-colors shadow-sm">
-                  <span class="text-[8px] font-black uppercase text-slate-400 group-hover:text-emerald-500">
-                    Ref:{project.data.refId}
+               <a href={project.data.link} target="_blank" class="flex h-8 w-fit min-w-[90px] items-center justify-between border border-slate-100 bg-slate-50 px-2 group-hover:border-blue-500 group-hover:bg-blue-50 transition-colors shadow-sm">
+                  <span class="text-[8px] font-black uppercase text-slate-500 group-hover:`text-blue-700 transition-colors">
+                    Read more
                   </span>
-                  <span class="text-xs text-slate-200 group-hover:text-emerald-500">↗</span>
+                  <span class="text-xs text-slate-400 group-hover:text-blue-600 transition-colors"> ↗</span>
                </a>
             </div>
           </div>
         </article>
       ))}
-    </div>
-
-    <div class="fixed bottom-6 left-6 hidden xl:block z-50">
-       <div class="flex items-center gap-3 bg-white/80 px-4 py-2 backdrop-blur-sm border border-slate-100 rounded-full shadow-sm">
-          <div class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400">Terminal Active: Bangalore</span>
-       </div>
     </div>
     
   </div>
